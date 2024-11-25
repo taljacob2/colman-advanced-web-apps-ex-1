@@ -2,10 +2,10 @@
   "name": "ex-1",
   "version": "1.0.0",
   "description": "First Advenced Web Apps Cours exercise",
-  "main": "app_ex1.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node app_ex1.js",
-    "dev": "nodemon app_ex1.js",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
