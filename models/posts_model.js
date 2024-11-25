@@ -12,6 +12,8 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
+}, {
+    versionKey: false,
 });
 
 const PostModel = mongoose.model('Posts', postSchema);
