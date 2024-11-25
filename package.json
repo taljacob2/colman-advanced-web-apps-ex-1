@@ -1,0 +1,30 @@
+{
+  "name": "ex-1",
+  "version": "1.0.0",
+  "description": "First Advenced Web Apps Cours exercise",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taljacob2/colman-advanced-web-apps-ex-1.git"
+  },
+  "author": "Mevorah Berrebi & Tal Jacob",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/taljacob2/colman-advanced-web-apps-ex-1/issues"
+  },
+  "homepage": "https://github.com/taljacob2/colman-advanced-web-apps-ex-1#readme",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mongoose": "^8.8.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
