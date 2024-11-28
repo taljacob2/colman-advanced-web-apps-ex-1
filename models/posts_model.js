@@ -13,7 +13,7 @@ const postSchema = new Schema({
         required: true
     },
 }, {
-    versionKey: false,
+   versionKey: false,
 });
 
 const PostModel = mongoose.model('Posts', postSchema);
