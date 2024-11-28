@@ -8,13 +8,18 @@ GET http://localhost:3000/posts
 GET http://localhost:3000/posts?owner=Mevorah
 
 ###
+
+GET http://localhost:3000/posts/67485928b2d6382e78f97e3f
+
+###
+
 POST http://localhost:3000/posts
 Content-Type: application/json
 
 {
     "owner": "Mevorah",
     "title": "Post 1",
-    "content": "This is my first post"
+    "content": "HEY!!"
 }
 
 
