@@ -1,7 +1,9 @@
 
 const express = require('express');
 const router = express.Router();
-const dotenv = require("dotenv").config();
+const dotenv = require("dotenv");
+const dotenvExpand = require("dotenv-expand");
+dotenvExpand.expand(dotenv.config());
 const app = express();
 const port = process.env.PORT;
 
