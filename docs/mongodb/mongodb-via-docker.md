@@ -41,6 +41,7 @@ DB_HOST=localhost
 DB_NAME=app
 MONGO_DOCKER_URI=mongodb://${DB_USER}:${DB_PASSWORD}@mongodb:${DB_DOCKER_PORT}/${DB_NAME}?authSource=admin
 MONGO_URI=mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_LOCAL_PORT}/${DB_NAME}?authSource=admin
+DB_CONNECTION=${MONGO_URI}
 
 # DB UI (mongoexpress)
 DB_UI_DOCKER_PORT=8081
