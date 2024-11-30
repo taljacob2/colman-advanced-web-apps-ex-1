@@ -22,6 +22,16 @@ Content-Type: application/json
     "content": "HEY!!"
 }
 
-
 ###
 
+PUT http://localhost:3000/posts
+Content-Type: application/json
+
+{
+    "_id": "67485928b2d6382e78f97e3f",
+    "owner": "Mevorah",
+    "title": "Post 1234",
+    "content": "HEY 123!!"
+}
+
+###
