@@ -44,7 +44,7 @@ const getPostById = async (req, res) => {
 
 };
 
-const updatePost = async (req, res) => {
+const updatePostById = async (req, res) => {
     const id = req.params.id;
     const post = req.body;
     try {
@@ -61,4 +61,4 @@ const updatePost = async (req, res) => {
     }
 };
 
-module.exports = {getAllPosts,createPost,getPostById,updatePost};
+module.exports = {getAllPosts,createPost,getPostById,updatePostById};
