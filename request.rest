@@ -1,19 +1,19 @@
 
 ###
 
-GET http://localhost:3000/posts
+GET http://localhost:3000/post
 
 ###
 
-GET http://localhost:3000/posts?owner=Mevorah
+GET http://localhost:3000/post?owner=Mevorah
 
 ###
 
-GET http://localhost:3000/posts/67485928b2d6382e78f97e3f
+GET http://localhost:3000/post/67485928b2d6382e78f97e3f
 
 ###
 
-POST http://localhost:3000/posts
+POST http://localhost:3000/post
 Content-Type: application/json
 
 {
