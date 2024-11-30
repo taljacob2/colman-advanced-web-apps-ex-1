@@ -17,6 +17,14 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Error handler for invalid JSON
+app.use((err, req, res, next) => {
+    if (err instanceof SyntaxError) {
+        return res.status(400).send('Invalid JSON syntax');
+    }
+    next(err);
+});
+
 const posts_routes = require('./routes/posts_routes');
 app.use('/post', posts_routes);	
 
