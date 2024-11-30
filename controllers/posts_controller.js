@@ -45,12 +45,15 @@ const getPostById = async (req, res) => {
 };
 
 const updatePost = async (req, res) => {
+    const id = req.params.id;
     const post = req.body;
     try {
-        const oldPost = await postModel.findByIdAndUpdate(post._id, post);
+        await new postModel(post).validate();
+        const oldPost = await postModel.findByIdAndUpdate(id, post);
         if (oldPost == null) {
             res.status(404).send('Post not found');
         } else {
+            post._id = oldPost._id;
             res.status(201).send(post);
         }        
     } catch(error) {
