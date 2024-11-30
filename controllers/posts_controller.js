@@ -12,7 +12,7 @@ const getAllPosts =  async (req, res) => {
             res.status(200).send(posts);
         }
     } catch(error){
-        res.status(400).send(error.message);
+        res.status(400).send("Bad Request");
     }
 
 };
@@ -24,7 +24,7 @@ const createPost = async (req, res) => {
         res.status(201).send(newPost);
 
     }catch(error){
-        res.status(400).send(error.message);
+        res.status(400).send("Bad Request");
 
     }
 };
@@ -39,7 +39,7 @@ const getPostById = async (req, res) => {
             res.status(404).send('Post not found');
         }
     } catch(error){
-        res.status(400).send(error.message);
+        res.status(400).send("Bad Request");
     }
 
 };
