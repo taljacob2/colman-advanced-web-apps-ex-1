@@ -44,4 +44,21 @@ const getPostById = async (req, res) => {
 
 };
 
-module.exports = {getAllPosts,createPost,getPostById};
+const updatePostById = async (req, res) => {
+    const id = req.params.id;
+    const post = req.body;
+    try {
+        await new postModel(post).validate();
+        const oldPost = await postModel.findByIdAndUpdate(id, post);
+        if (oldPost == null) {
+            res.status(404).send('Post not found');
+        } else {
+            post._id = oldPost._id;
+            res.status(201).send(post);
+        }        
+    } catch(error) {
+        res.status(400).send("Bad Request");
+    }
+};
+
+module.exports = {getAllPosts,createPost,getPostById,updatePostById};
