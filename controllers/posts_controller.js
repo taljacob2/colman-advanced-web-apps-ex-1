@@ -1,10 +1,10 @@
 const postModel = require('../models/posts_model');
 
 const getAllPosts =  async (req, res) => {
-    const ownerFilter = req.query.owner;
+    const senderFilter = req.query.sender;
     try{
-        if(ownerFilter){
-            const posts = await postModel.find({owner: ownerFilter});
+        if(senderFilter){
+            const posts = await postModel.find({sender: senderFilter});
             res.status(200).send(posts);
             
         } else{
