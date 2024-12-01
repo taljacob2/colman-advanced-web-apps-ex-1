@@ -28,7 +28,7 @@ PUT http://localhost:3000/posts/67485928b2d6382e78f97e3f
 Content-Type: application/json
 
 {
-    "owner": "Mevorah 1234",
+    "sender": "Mevorah 1234",
     "title": "Post 1234",
     "content": "HEY 1234!!"
 }
