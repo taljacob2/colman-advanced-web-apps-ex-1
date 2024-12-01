@@ -35,7 +35,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3000/posts/comments
+POST http://localhost:3000/post/comment
 Content-Type: application/json
 
 {

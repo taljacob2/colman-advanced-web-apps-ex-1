@@ -11,6 +11,6 @@ router.get('/:id', Post.getPostById);
 
 router.put('/:id', Post.updatePostById);
 
-router.post('/comments', Post.createComment);
+router.post('/comment', Post.createComment);
 
 module.exports = router;
