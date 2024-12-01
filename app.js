@@ -27,6 +27,8 @@ app.use((err, req, res, next) => {
 
 const posts_routes = require('./routes/posts_routes');
 app.use('/post', posts_routes);	
+const comments_routes = require('./routes/comments_routes');
+app.use('/comment', comments_routes);	
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
