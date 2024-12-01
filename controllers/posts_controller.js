@@ -57,7 +57,7 @@ const updatePostById = async (req, res) => {
             res.status(201).send(post);
         }        
     } catch(error) {
-        res.status(400).send(error.message);
+        res.status(400).send("Bad Request");
     }
 };
 
