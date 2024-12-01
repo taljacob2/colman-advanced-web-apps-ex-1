@@ -76,7 +76,7 @@ const createComment = async (req, res) => {
             res.status(201).send(newComment);
         }
     } catch(error) {
-        res.status(400).send(error.message);
+        res.status(400).send("Bad Request");
     }
 };
 
