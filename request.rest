@@ -39,7 +39,7 @@ POST http://localhost:3000/comment
 Content-Type: application/json
 
 {
-    "postId": "674cb68f8dd29399c22f5f65",
+    "postId": "67485928b2d6382e78f97e3f",
     "sender": "Tal",
     "content": "HELLO COMMENT!!"
 }
