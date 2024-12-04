@@ -43,3 +43,13 @@ Content-Type: application/json
     "sender": "Tal",
     "content": "HELLO COMMENT!!"
 }
+
+###
+
+PUT http://localhost:3000/comment/674fc2b1ce5438cced3236f2
+Content-Type: application/json
+
+{
+    "sender": "Tal 1234",
+    "content": "HELLO COMMENT 1234!!"
+}

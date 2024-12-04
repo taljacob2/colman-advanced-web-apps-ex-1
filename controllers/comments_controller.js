@@ -19,4 +19,27 @@ const createComment = async (req, res) => {
     }
 };
 
-module.exports = {createComment};
+const updateCommentById = async (req, res) => {
+    const id = req.params.id;
+    const comment = req.body;
+    try {
+        const oldComment = await commentModel.findById(id);
+        if (oldComment == null) {
+            res.status(404).send('Comment not found');
+        } else {
+            comment.postId = oldComment.postId;
+            comment.updatedAt = new Date().toISOString();
+            comment.createdAt = oldComment.createdAt;
+            await new commentModel(comment).validate();
+            await commentModel.findByIdAndUpdate(id, comment);
+
+            comment._id = oldComment._id;
+            res.status(201).send(comment);
+        }
+    } catch(error) {
+        res.status(400).send("Bad Request");
+    }
+};
+
+
+module.exports = {createComment, updateCommentById};

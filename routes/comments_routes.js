@@ -5,4 +5,6 @@ const Comment = require('../controllers/comments_controller');
 
 router.post('/', Comment.createComment);
 
+router.put('/:id', Comment.updateCommentById);
+
 module.exports = router;
