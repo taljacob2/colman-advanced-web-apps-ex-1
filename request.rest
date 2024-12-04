@@ -43,3 +43,8 @@ Content-Type: application/json
     "sender": "Tal",
     "content": "HELLO COMMENT!!"
 }
+
+###
+
+GET http://localhost:3000/comment/post/67485928b2d6382e78f97e3f
+Content-Type: application/json
