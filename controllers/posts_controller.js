@@ -15,7 +15,7 @@ const getAllPosts =  async (req, res) => {
         res.status(400).send("Bad Request");
     }
 
-};
+}
 
 const createPost = async (req, res) => {
     const post = req.body;
@@ -27,7 +27,7 @@ const createPost = async (req, res) => {
         res.status(400).send("Bad Request");
 
     }
-};
+}
 
 const getPostById = async (req, res) => {
     const id = req.params.id;
@@ -42,7 +42,7 @@ const getPostById = async (req, res) => {
         res.status(400).send("Bad Request");
     }
 
-};
+}
 
 const updatePostById = async (req, res) => {
     const id = req.params.id;
@@ -59,6 +59,6 @@ const updatePostById = async (req, res) => {
     } catch(error) {
         res.status(400).send("Bad Request");
     }
-};
+}
 
-module.exports = {getAllPosts,createPost,getPostById,updatePostById};
+module.exports = {getAllPosts, createPost, getPostById, updatePostById};
