@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/taljacob2/colman-advanced-web-apps-ex-1#readme",
   "dependencies": {
-    "body-parser": "^1.20.3",
     "dotenv": "^16.4.5",
     "dotenv-expand": "^12.0.1",
     "express": "^4.21.1",

@@ -13,9 +13,7 @@ const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', () => console.log("Connected to DataBase"));
 
-const bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Error handler for invalid JSON
 app.use((err, req, res, next) => {
