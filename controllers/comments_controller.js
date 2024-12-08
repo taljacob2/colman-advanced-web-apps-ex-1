@@ -71,4 +71,13 @@ const deleteCommentById = async (req, res) => {
     }
 }
 
-module.exports = {createComment, getByPostId, updateCommentById, deleteCommentById};
+const getAllComments = async (req, res) => {
+    try {
+        const comments = await commentModel.find();
+        res.status(200).send(comments);
+    } catch(error) {
+        res.status(400).send("Bad Request");
+    }
+}
+
+module.exports = {createComment, getByPostId, updateCommentById, deleteCommentById, getAllComments};
