@@ -9,7 +9,7 @@ GET http://localhost:3000/post?sender=Mevorah
 
 ###
 
-GET http://localhost:3000/post/67485928b2d6382e78f97e3f
+GET http://localhost:3000/post/6755df72fa7704d85baec0c2
 
 ###
 
@@ -24,7 +24,7 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:3000/post/67485928b2d6382e78f97e3f
+PUT http://localhost:3000/post/6755da8614e9b89cb0e24bd4
 Content-Type: application/json
 
 {
@@ -39,14 +39,14 @@ POST http://localhost:3000/comment
 Content-Type: application/json
 
 {
-    "postId": "67485928b2d6382e78f97e3f",
+    "postId": "6755df72fa7704d85baec0c2",
     "sender": "Tal",
     "content": "HELLO COMMENT!!"
 }
 
 ###
 
-PUT http://localhost:3000/comment/674fc2b1ce5438cced3236f2
+PUT http://localhost:3000/comment/6755da8614e9b89cb0e24bd4
 Content-Type: application/json
 
 {
@@ -56,6 +56,11 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/comment/post/67485928b2d6382e78f97e3f
+GET http://localhost:3000/comment/post/6755df72fa7704d85baec0c2
 Content-Type: application/json
 
+###
+
+DELETE http://localhost:3000/comment/6755e02efa7704d85baec0ce
+
+###

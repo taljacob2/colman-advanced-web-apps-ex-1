@@ -56,4 +56,19 @@ const getByPostId = async (req, res) => {
     }
 }
 
-module.exports = {createComment, getByPostId, updateCommentById};
+const deleteCommentById = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const comment = await commentModel.findById(id);
+        if (comment == null) {
+            res.status(404).send('Comment not found');
+        } else {
+            const deletedComment = await commentModel.findByIdAndDelete(id);
+            res.status(200).send(deletedComment);
+        }
+    } catch(error) {
+        res.status(400).send("Bad Request");
+    }
+}
+
+module.exports = {createComment, getByPostId, updateCommentById, deleteCommentById};
