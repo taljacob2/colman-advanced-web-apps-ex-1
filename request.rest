@@ -14,7 +14,7 @@ GET http://localhost:3000/post?sender=Mevorah
 
 GET http://localhost:3000/post/6755df72fa7704d85baec0c2
 
-//GET POST BI ID
+//GET POST BY ID
 
 ###
 
