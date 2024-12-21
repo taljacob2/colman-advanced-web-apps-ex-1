@@ -105,3 +105,16 @@ describe('when http request PUT /post/id of existing post', () => {
         expect(resBody).toEqual(body);
     });
 });
+
+describe('when http request PUT /post/id of existing post but without required sender field', () => {
+    it('then should return 400 bad request http status', async () => {
+        const body = {
+            "title": "UPDATED POST TITLE",
+            "content": "UPDATED POST CONTENT"
+        };
+        const res = await request(app).put(`/post/${exitingPost._id}`)
+            .send(body);
+
+        expect(res.statusCode).toBe(400);
+    });
+});
