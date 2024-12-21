@@ -153,11 +153,13 @@ describe('when http request PUT /comment/id of unknown post', () => {
         const res = await request(app).put(`/comment/${existingComment._id}`)
             .send(body);
         const resBody = res.body;
+
+        expect(res.statusCode).toBe(201);
+        expect(new Date(resBody.updatedAt).getMilliseconds())
+            .toBeGreaterThan(new Date(resBody.createdAt).getMilliseconds());
         delete resBody._id;
         delete resBody.createdAt;
         delete resBody.updatedAt;
-
-        expect(res.statusCode).toBe(201);
         expect(resBody.postId).toEqual(existingPost1._id);
     });
 });
@@ -185,11 +187,13 @@ describe('when http request PUT /comment/id without required postId field', () =
         const res = await request(app).put(`/comment/${existingComment._id}`)
             .send(body);
         const resBody = res.body;
+
+        expect(res.statusCode).toBe(201);
+        expect(new Date(resBody.updatedAt).getMilliseconds())
+            .toBeGreaterThan(new Date(resBody.createdAt).getMilliseconds());
         delete resBody._id;
         delete resBody.createdAt;
         delete resBody.updatedAt;
-
-        expect(res.statusCode).toBe(201);
         expect(resBody.postId).toEqual(existingPost1._id);
     });
 });
@@ -217,11 +221,13 @@ describe('when http request PUT /comment/id of existing post and comment', () =>
         const res = await request(app).put(`/comment/${existingComment._id}`)
             .send(body);
         const resBody = res.body;
-        delete resBody._id;
-        delete resBody.createdAt;
-        delete resBody.updatedAt;
 
         expect(res.statusCode).toBe(201);
+        expect(new Date(resBody.updatedAt).getMilliseconds())
+            .toBeGreaterThan(new Date(resBody.createdAt).getMilliseconds());
+        delete resBody._id;
+        delete resBody.createdAt;
+        delete resBody.updatedAt;    
         expect(resBody).toEqual(body);
     });
 });
