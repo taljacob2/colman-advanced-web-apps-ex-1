@@ -256,7 +256,6 @@ describe('given unknown post when http request GET /comment/post/id', () => {
     });
 });
 
-
 describe('given existing post without any comments when http request GET /comment/post/id', () => {
     it('then should return empty list', async () => {
         const res = await request(app)
@@ -264,5 +263,22 @@ describe('given existing post without any comments when http request GET /commen
     
         expect(res.statusCode).toBe(200);
         expect(res.body).toEqual([]);
+    });
+});
+
+describe('given unknown comment when http request DELETE /comment/id', () => {
+    it('then should return 400 bad request http status', async () => {
+        const res = await request(app).delete(`/comment/UNKNOWN`);
+
+        expect(res.statusCode).toBe(400);
+    });
+});
+
+describe('given existing comment when http request DELETE /comment/id', () => {
+    it('then should return 200 success http status', async () => {
+        const res = await request(app)
+            .delete(`/comment/${existingComment._id}`);
+
+        expect(res.statusCode).toBe(200);
     });
 });
