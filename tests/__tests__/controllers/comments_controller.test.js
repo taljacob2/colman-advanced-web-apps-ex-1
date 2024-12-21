@@ -1,14 +1,15 @@
 const request = require('supertest');
 const app = require('../../../app');
 
-let existingPost = null;
+let existingPost1 = null;
+let existingPost2 = null;
 let existingComment = null;
 
 describe('given db empty of comments when http request GET /comment', () => {
     it('then should return empty list', async () => {
         const res = await request(app).get('/comment');
         expect(res.statusCode).toBe(200);
-        expect(res.body).toStrictEqual([]);
+        expect(res.body).toEqual([]);
     });
 });
 
@@ -18,15 +19,27 @@ describe('given db empty of comments when http request GET /comment', () => {
  */
 describe('when http request POST /post', () => {
     it('then should add post to the db', async () => {
-        const body = {
+        // Post 1
+        const body1 = {
             "sender": "USERNAME1",
             "title": "POST1 TITLE",
             "content": "POST1 CONTENT"
         };
-        const res = await request(app).post('/post')
-            .send(body);
-        const resBody = res.body;
-        existingPost = { ...resBody };
+        const res1 = await request(app).post('/post')
+            .send(body1);
+        const resBody1 = res1.body;
+        existingPost1 = { ...resBody1 };
+
+        // Post 2
+        const body2 = {
+            "sender": "USERNAME1",
+            "title": "POST2 TITLE",
+            "content": "POST2 CONTENT"
+        };
+        const res2 = await request(app).post('/post')
+            .send(body2);
+        const resBody2 = res2.body;
+        existingPost2 = { ...resBody2 };
     });
 });
 
@@ -47,7 +60,7 @@ describe('when http request POST /comment to an unknown post', () => {
 describe('when http request POST /comment to an existing post without required sender field', () => {
     it('then should return 400 bad request http status', async () => {
         const body = {
-            "postId": `${existingPost._id}`,
+            "postId": `${existingPost1._id}`,
             "content": "COMMENT1 CONTENT"
         };
         const res = await request(app).post('/comment')
@@ -73,7 +86,7 @@ describe('when http request POST /comment without required postId field', () => 
 describe('when http request POST /comment  to an existing post', () => {
     it('then should add comment to the db', async () => {
         const body = {
-            "postId": `${existingPost._id}`,
+            "postId": `${existingPost1._id}`,
             "sender": "USERNAME1",
             "content": "COMMENT1 CONTENT"
         };
@@ -98,7 +111,7 @@ describe('when http request POST /comment  to an existing post', () => {
     it('then should add comment to the db', async () => {
         // Comment 1
         const body1 = {
-            "postId": `${existingPost._id}`,
+            "postId": `${existingPost1._id}`,
             "sender": "USERNAME1",
             "content": "COMMENT1 CONTENT"
         };
@@ -106,7 +119,7 @@ describe('when http request POST /comment  to an existing post', () => {
 
         // Comment 2
         const body2 = {
-            "postId": `${existingPost._id}`,
+            "postId": `${existingPost1._id}`,
             "sender": "USERNAME2",
             "content": "COMMENT2 CONTENT"
         };
@@ -114,7 +127,7 @@ describe('when http request POST /comment  to an existing post', () => {
 
         // Comment 3
         const body3 = {
-            "postId": `${existingPost._id}`,
+            "postId": `${existingPost1._id}`,
             "sender": "USERNAME3",
             "content": "COMMENT3 CONTENT"
         };
@@ -145,14 +158,14 @@ describe('when http request PUT /comment/id of unknown post', () => {
         delete resBody.updatedAt;
 
         expect(res.statusCode).toBe(201);
-        expect(resBody.postId).toEqual(existingPost._id);
+        expect(resBody.postId).toEqual(existingPost1._id);
     });
 });
 
 describe('when http request PUT /comment/id of unknown comment', () => {
     it('then should return 400 bad request http status', async () => {
         const body = {
-            "postId": `${existingPost._id}`,
+            "postId": `${existingPost1._id}`,
             "sender": "UPDATED USERNAME",
             "content": "UPDATED COMMENT CONTENT"
         };
@@ -177,14 +190,14 @@ describe('when http request PUT /comment/id without required postId field', () =
         delete resBody.updatedAt;
 
         expect(res.statusCode).toBe(201);
-        expect(resBody.postId).toEqual(existingPost._id);
+        expect(resBody.postId).toEqual(existingPost1._id);
     });
 });
 
 describe('when http request PUT /comment/id without required sender field', () => {
     it('then should return 400 bad request http status', async () => {
         const body = {
-            "postId": `${existingPost._id}`,
+            "postId": `${existingPost1._id}`,
             "content": "UPDATED COMMENT CONTENT"
         };
         const res = await request(app).put(`/comment/${existingComment._id}`)
@@ -197,7 +210,7 @@ describe('when http request PUT /comment/id without required sender field', () =
 describe('when http request PUT /comment/id of existing post and comment', () => {
     it('then should update comment in the db', async () => {
         const body = {
-            "postId": `${existingPost._id}`,
+            "postId": `${existingPost1._id}`,
             "sender": "UPDATED USERNAME",
             "content": "UPDATED COMMENT CONTENT"
         };
@@ -215,7 +228,7 @@ describe('when http request PUT /comment/id of existing post and comment', () =>
 
 describe('given existing post when http request GET /comment/post/id', () => {
     it('then should return its comments only', async () => {
-        const res = await request(app).get(`/comment/post/${existingPost._id}`);
+        const res = await request(app).get(`/comment/post/${existingPost1._id}`);
         const resBody = res.body;
         const postIds = resBody.map((comment) => comment.postId);
 
@@ -226,5 +239,24 @@ describe('given existing post when http request GET /comment/post/id', () => {
         expect(res.statusCode).toBe(200);
         expect(uniquePostIds.length).toBe(1);
         expect(uniquePostIds[0]).toEqual(resBody[0].postId);
+    });
+});
+
+describe('given unknown post when http request GET /comment/post/id', () => {
+    it('then should return 400 bad request http status', async () => {
+        const res = await request(app).get(`/comment/post/UNKNOWN`);
+    
+        expect(res.statusCode).toBe(400);
+    });
+});
+
+
+describe('given existing post without any comments when http request GET /comment/post/id', () => {
+    it('then should return empty list', async () => {
+        const res = await request(app)
+            .get(`/comment/post/${existingPost2._id}`);
+    
+        expect(res.statusCode).toBe(200);
+        expect(res.body).toEqual([]);
     });
 });

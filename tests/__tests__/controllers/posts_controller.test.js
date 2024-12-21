@@ -7,7 +7,7 @@ describe('given db empty of posts when http request GET /post', () => {
     it('then should return empty list', async () => {
         const res = await request(app).get('/post');
         expect(res.statusCode).toBe(200);
-        expect(res.body).toStrictEqual([]);
+        expect(res.body).toEqual([]);
     });
 });
 
