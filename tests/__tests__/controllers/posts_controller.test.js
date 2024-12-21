@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../../../app');
 
-let exitingPost = null;
+let existingPost = null;
 
 describe('given db empty of posts when http request GET /post', () => {
     it('then should return empty list', async () => {
@@ -21,7 +21,7 @@ describe('when http request POST /post', () => {
         const res = await request(app).post('/post')
             .send(body);
         const resBody = res.body;
-        exitingPost = { ...resBody };
+        existingPost = { ...resBody };
         delete resBody._id;
 
         expect(res.statusCode).toBe(201);
@@ -59,7 +59,7 @@ describe('given unknown username when http request GET /post?sender', () => {
     });
 });
 
-describe('given known username when http request GET /post?sender', () => {
+describe('given existing username when http request GET /post?sender', () => {
     it('then should return his posts only', async () => {
         const res = await request(app).get('/post?sender=USERNAME');
         const resBody = res.body;
@@ -96,7 +96,7 @@ describe('when http request PUT /post/id of existing post', () => {
             "title": "UPDATED POST TITLE",
             "content": "UPDATED POST CONTENT"
         };
-        const res = await request(app).put(`/post/${exitingPost._id}`)
+        const res = await request(app).put(`/post/${existingPost._id}`)
             .send(body);
         const resBody = res.body;
         delete resBody._id;
@@ -112,7 +112,7 @@ describe('when http request PUT /post/id of existing post but without required s
             "title": "UPDATED POST TITLE",
             "content": "UPDATED POST CONTENT"
         };
-        const res = await request(app).put(`/post/${exitingPost._id}`)
+        const res = await request(app).put(`/post/${existingPost._id}`)
             .send(body);
 
         expect(res.statusCode).toBe(400);
